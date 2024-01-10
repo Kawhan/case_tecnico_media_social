@@ -17,8 +17,23 @@ Including another URLconf
 from apps.social_media.api import viewsets as socialviewsets
 from django.contrib import admin
 from django.urls import include, path
+from drf_yasg import openapi
+from drf_yasg.views import get_schema_view
 from rest_framework import routers
 from rest_framework_simplejwt import views as jwt_views
+
+schema_view = get_schema_view(
+    openapi.Info(
+        title="Social_Media_API",
+        default_version="v1",
+        description="Social Media API",
+        terms_of_service="https://example.com/terms/",
+        contact=openapi.Contact(email="contact@example.com"),
+        license=openapi.License(name="MIT License"),
+    ),
+    public=True,
+)
+
 
 router = routers.DefaultRouter()
 
@@ -35,4 +50,8 @@ urlpatterns = [
          name='token_obtain_pair'),
     path('api/token/refresh/', jwt_views.TokenRefreshView.as_view(),
          name='token_refresh'),
+    path('swagger/', schema_view.with_ui('swagger',
+         cache_timeout=0), name='schema-swagger-ui'),
+    path('redoc/', schema_view.with_ui('redoc',
+         cache_timeout=0), name='schema-redoc'),
 ]

@@ -44,7 +44,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    'social_media'
+    'social_media',
+    'drf_yasg',
+    'django_filters',
 ]
 
 MIDDLEWARE = [
@@ -178,4 +180,32 @@ SIMPLE_JWT = {
     'SLIDING_TOKEN_LIFETIME': timedelta(minutes=5),
     # update here for refresh token
     'SLIDING_TOKEN_REFRESH_LIFETIME': timedelta(days=1),
+}
+
+if not DEBUG:
+    CSRF_COOKIE_SECURE = True
+
+    SESSION_COOKIE_SECURE = True
+
+    SECURE_HSTS_SECONDS = 3600
+
+    SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+
+    SECURE_SSL_REDIRECT = True
+
+    SECURE_HSTS_PRELOAD = True
+
+SWAGGER_SETTINGS = {
+    'SECURITY_DEFINITIONS': {
+        'Bearer': {
+            'type': 'apiKey',
+            'name': 'Authorization',
+            'in': 'header'
+        }
+    }
+}
+
+REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 5
 }

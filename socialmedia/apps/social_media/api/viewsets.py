@@ -1,7 +1,8 @@
 from django.core.exceptions import ValidationError as DjangoValidationError
 from django.utils.decorators import method_decorator
 from django.views.decorators.cache import cache_page
-from rest_framework import permissions, viewsets
+from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework import filters, permissions, viewsets
 from social_media.api import serializers
 from social_media.models import Comment, Post
 
@@ -13,6 +14,11 @@ class PostsViewSet(viewsets.ModelViewSet):
     queryset = Post.objects.all()
     permission_classes = [IsOwnerOrReadOnly,
                           permissions.IsAuthenticatedOrReadOnly]
+    filter_backends = [DjangoFilterBackend,
+                       filters.OrderingFilter, filters.SearchFilter]
+
+    ordering_fields = ['publication_date']
+    search_fields = ['title', 'author']
 
     def perform_create(self, serializer):
         serializer.save(author=self.request.user)
@@ -27,6 +33,14 @@ class CommentsViewSet(viewsets.ModelViewSet):
     queryset = Comment.objects.all()
     permission_classes = [IsOwnerOrReadOnly,
                           permissions.IsAuthenticatedOrReadOnly]
+
+    permission_classes = [IsOwnerOrReadOnly,
+                          permissions.IsAuthenticatedOrReadOnly]
+    filter_backends = [DjangoFilterBackend,
+                       filters.OrderingFilter, filters.SearchFilter]
+
+    ordering_fields = ['publication_date',]
+    search_fields = ['post', 'author']
 
     def perform_create(self, serializer):
         serializer.save(author=self.request.user)
