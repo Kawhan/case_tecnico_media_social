@@ -34,8 +34,6 @@ class CommentsViewSet(viewsets.ModelViewSet):
     permission_classes = [IsOwnerOrReadOnly,
                           permissions.IsAuthenticatedOrReadOnly]
 
-    permission_classes = [IsOwnerOrReadOnly,
-                          permissions.IsAuthenticatedOrReadOnly]
     filter_backends = [DjangoFilterBackend,
                        filters.OrderingFilter, filters.SearchFilter]
 
