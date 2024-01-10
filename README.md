@@ -36,3 +36,14 @@ Ubuntu use this tutorial: <a href="https://www.codingforentrepreneurs.com/guides
 
 
 5° Swagger docs Url: http://127.0.0.1:8000/swagger/
+
+## 🤖 Run tests
+
+1° Run the short linux tutorial project (tests)<br/>
+<ol align="left">
+  <li>Create a virtual enviroment: python -m venv ./venv</li>
+  <li>Activate virtual enviroment: source venv/bin/activate</li>
+  <li>Install all dependencies using the command: pip install -r requirements.txt</li>
+  <li>Use: python manage.py migrate. To appling all migrates</li>
+  <li>Start tests using: python3 manage.py test social_media</li>
+</ol>
