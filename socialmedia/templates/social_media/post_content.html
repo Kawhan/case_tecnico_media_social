@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Post title: {{ post.title }}</h1>
+<h1>Post author username: {{ post.author.username }}</h1>
+<h1>Post content: {{ post.content }}</h1>
+<h1>Post date of publication: {{ post.publication_date }}</h1>
+
+<h3>Comments</h3>
+<ul>
+    {% for comment in post.comment_set.all %}
+        <li>{{ comment.author.username }}</li>
+    {% endfor %}
+</ul>
+
+{% endblock %}

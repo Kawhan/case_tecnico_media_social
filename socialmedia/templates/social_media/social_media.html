@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% for post in posts %}
+    <div>
+        <h1>Post title: <a href="{% url 'view_content_post' post.id %}">{{ post.title }}</a></h1>
+        <h1>Post author username: {{ post.author.username }}</h1>
+        <h1>Post date of publication: {{ post.publication_date }}</h1>
+
+        <h3>Comments</h3>
+        <ul>
+            {% for comment in post.comment_set.all %}
+                <li>{{ comment.author.username }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endfor %}
+
+
+{% endblock %}
