@@ -24,7 +24,7 @@ Ubuntu use this tutorial: <a href="https://www.codingforentrepreneurs.com/guides
   <li>Start the project using the command: python manage.py runserver</li>
 </ol>
 
-3° Run the short linux tutorial project using python3<br/>
+4° Run the short linux tutorial project using python3<br/>
 <ol align="left">
   <li>Create a virtual enviroment: python3 -m venv ./venv</li>
   <li>Activate virtual enviroment: source venv/bin/activate</li>
@@ -35,4 +35,4 @@ Ubuntu use this tutorial: <a href="https://www.codingforentrepreneurs.com/guides
 </ol>
 
 
-4° Swagger docs Url: http://127.0.0.1:8000/swagger/
+5° Swagger docs Url: http://127.0.0.1:8000/swagger/
